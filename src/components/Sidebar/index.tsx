@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Container } from "../styles"
 //Importando um svg como um component
 import { ReactComponent as BurgerIcon } from '../../assets/burger.svg';
@@ -9,14 +10,22 @@ import { ReactComponent as IceCreamIcon } from '../../assets/ice-cream.svg'
 import menuImg from '../../assets/menu.svg';
 
 export function Sidebar(){
-    return  <Container>
-        <button type="button">
-            <img src={menuImg} alt="Abrir e fechar o menu" />
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const handleToggleMenu = () =>{
+        setMenuOpen(!menuOpen);
+    }
+
+
+    return  <Container isMenuOpen={menuOpen}>
+        <button type="button" onClick={handleToggleMenu}>
+            <img src={menuImg}  alt="Abrir e fechar o menu" />
         </button>
         <nav>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="#" className='active'>
                         <BurgerIcon/>
                         <span>Hambúrgueres</span>    
                     </a>
